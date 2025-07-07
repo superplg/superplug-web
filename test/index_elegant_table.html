@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Test</title>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/commonsky-org/mapp-web-components/dist/lib/mapp-web-components.js"></script>
+  </head>
+  <body>
+    <mv-elegant-table />
+  </body>
+
+  <script>
+
+    let items = [
+      {
+        "name": "test",
+        "description": "test"
+      }
+    ];
+
+    let headers = [
+      {
+        "name": "name",
+        "displayName": "Name",
+        "searchable": true
+      },
+      {
+        "name": "description",
+        "displayName": "Description",
+        "searchable": true
+      }
+    ];
+
+    customElements.whenDefined('mv-elegant-table').then(() => {
+      let buffet = document.querySelector('mv-elegant-table');
+      buffet.setAttribute("headers", JSON.stringify(headers));  
+      buffet.setAttribute("rows", JSON.stringify(items));      
+    });
+  </script>
+
+</html>

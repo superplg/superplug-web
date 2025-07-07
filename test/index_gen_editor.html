@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Editor test</title>
+    <script type="module" src="../dist/lib/mapp-web-components.js"></script>
+  </head>
+  <body>
+    <h1>Editor test</h1>
+    <div>
+      <gen-editor editorContent=""></gen-editor>
+
+      <button>Save</button>
+    </div>
+    
+    <script>
+      document.addEventListener("EditorContentSave", e => {
+        console.log(e.detail);
+        var input = e.detail.text;
+        loadData(input);
+      });
+    </script>
+
+    <style>
+
+      .ck-powered-by {
+        display: none;
+      }
+
+
+    </style>
+  </body>
+</html>
