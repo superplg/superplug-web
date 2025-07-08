@@ -12,6 +12,7 @@
     titleImageUrl: string,
     headerMenus: {
       title: string,
+      url: string,
       imageUrl: string,
       imageShape: string,
       items: {
@@ -39,6 +40,22 @@
       menuVisibleFlags[name] = true;
     else
       menuVisibleFlags[name] = false;
+  }
+
+  function menuLinkClick(e: any, title: {title: string, url: string}) {
+    e.stopPropagation();
+    if (title.url) {
+      window.location.href = title.url;
+    } else {
+      if ($host()) {
+        // dispatch document event for easy client reading
+        document.dispatchEvent(
+          new CustomEvent(title.title, {
+            detail: {},
+          }),
+        );
+      }
+    }
   }
 
   function getMenuPosition(name: string): {top?: string, left?: string} {
@@ -85,7 +102,14 @@
   <div class="right_menus">
     {#each headerMenus as menu, i}
       <button class="menu_button" id={formatName(menu.title + "_button")} onclick={(e) => menuClick(e, menu.title)}>
-        <img class="menu_icon" class:round={menu.imageShape==="round"} alt={menu.title} src={menu.imageUrl} bind:this={menuButtons[formatName(menu.title + "_button")]} /></button>
+        {#if menu.imageUrl}
+          <img class="menu_icon" class:round={menu.imageShape==="round"} alt={menu.title} src={menu.imageUrl} bind:this={menuButtons[formatName(menu.title + "_button")]} />
+        {:else}
+          <!-- svelte-ignore a11y_click_events_have_key_events -->
+          <!-- svelte-ignore a11y_no_static_element_interactions -->
+          <span class="menu_text" onclick={(e) => menuLinkClick(e, menu)}>{menu.title}</span>
+        {/if}
+      </button>
 
       {#if menuVisibleFlags[menu.title]}
         <DropDown menuItems={menu.items} position={getMenuPosition(formatName(menu.title + "_button"))}></DropDown>
@@ -157,6 +181,10 @@
 
   .menu_icon:hover {
     cursor: pointer;
+  }
+
+  .menu_text {
+    font-weight: 700;
   }
 
   .round {

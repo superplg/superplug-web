@@ -13,19 +13,16 @@
     menuItems: {
       title: string,
       url?: string,
-      event?: string
     }[]
   } = $props();
   
-  function sendEvent(name: string | undefined) {
-    if ($host() && name) {
-      // dispatch document event for easy client reading
-      document.dispatchEvent(
-        new CustomEvent(name, {
-          detail: {},
-        }),
-      );
-    }
+  function sendEvent(name: string) {
+    // dispatch document event for easy client reading
+    document.dispatchEvent(
+      new CustomEvent(name, {
+        detail: {},
+      }),
+    );
   }
 
 </script>
@@ -38,7 +35,7 @@
         {#if item.url}
           <a href={item.url}>{item.title}</a>
         {:else}
-          <button class="menu_item_button" onclick={()=>sendEvent(item.event)}>{item.title}</button>
+          <button class="menu_item_button" onclick={(e)=>sendEvent(item.title)}>{item.title}</button>
         {/if}
       </div>
     {/each}

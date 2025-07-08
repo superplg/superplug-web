@@ -28,6 +28,7 @@
     titleImageUrl: string,
     headerMenus: {
       title: string,
+      url: string
       imageUrl: string,
       imageShape: string,
       items: {

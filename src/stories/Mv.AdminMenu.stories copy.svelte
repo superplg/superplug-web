@@ -9,10 +9,10 @@
     tags: ['autodocs'],
     argTypes: {},
     args: {
-      title: "Admin",
-      imageurl: "https://www.svgrepo.com/show/501438/admin.svg",
-      selected: "Users",
-      items: [
+      menuTitle: "Admin",
+      menuImageurl: "https://www.svgrepo.com/show/501438/admin.svg",
+      selectedFeature: "Users",
+      menuItems: [
         {
           title: "Users",
           imageUrl: "https://www.svgrepo.com/show/447468/products.svg",
