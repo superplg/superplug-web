@@ -67,6 +67,7 @@
 
   .hero_logo_text {
     padding-left: 12px;
+    padding-right: 12px;
   }
 
   .hero_search {

@@ -22,15 +22,21 @@
   <div class="top_left_label">
     <span>{item.dateTime}</span>
     <div class="top_right_icons">
-      {#each item.categories as topRightIcon}
-        <img src={topRightIcon.url} alt="type icon" title={topRightIcon.title}/>
+      {#each item.categories as cat}
+        {#if cat.imageUrl}
+          <img src={cat.imageUrl} alt="category icon" title={cat.name}/>
+        {:else if cat.symbol}
+          <span class="card_symbol" title={cat.name}>{cat.symbol}</span>
+        {/if}
       {/each}
     </div>
   </div>
 
-  <img class="header_image" src={item.imageUrl} alt="header preview"/>
+  {#if item.imageUrl}
+    <img class="header_image" src={item.imageUrl} alt="header preview" />
+  {/if}
 
-  <a href={item.link} class="title">{item.description}</a>
+  <a href={item.link} class="title">{item.title}</a>
 
   <a class="author" href={item.authorUrl} target="_blank">
     <img src={item.authorImageUrl} alt="profile"/>
@@ -41,15 +47,17 @@
     <div class="link">
       <a href={item.link} target="_blank">Open asset ↗</a>
       <div class="type_box">
-        {#each item.types as lowerRightIcon}
-          <img src={lowerRightIcon.url} alt="type icon" title={lowerRightIcon.title}/>
+        {#each item.types as type}
+          {#if type.imageUrl}
+            <img src={type.imageUrl} alt="category icon" title={type.name}/>
+          {:else if type.symbol}
+            <span class="card_symbol" title={type.name}>{type.symbol}</span>
+          {/if}
         {/each}
       </div>
     </div>
   </div>
-
 </div>
-
 
 <style>
   .card_frame {
@@ -139,6 +147,14 @@
 
   .author:hover {
     color: #757a79;
+  }
+
+  .card_symbol {
+    padding-left: 6px;
+  }
+
+  .card_symbol:hover {
+    cursor:default;
   }
 
   .footer {

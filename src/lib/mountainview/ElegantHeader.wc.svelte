@@ -133,7 +133,7 @@
     margin: 0px;
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 22;
     border-bottom: solid 1px rgba(222, 222, 222, 1);
   }
 
