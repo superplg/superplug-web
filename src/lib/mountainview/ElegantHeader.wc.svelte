@@ -5,14 +5,16 @@
 
   let {
     title="",
+    titleUrl="/",
     titleImageUrl="",
     headerMenus=[]
   }: {
     title: string,
+    titleUrl: string,
     titleImageUrl: string,
     headerMenus: {
       title: string,
-      url: string,
+      titleUrl: string,
       imageUrl: string,
       imageShape: string,
       items: {
@@ -47,14 +49,12 @@
     if (title.url) {
       window.location.href = title.url;
     } else {
-      if ($host()) {
-        // dispatch document event for easy client reading
-        document.dispatchEvent(
-          new CustomEvent(title.title, {
-            detail: {},
-          }),
-        );
-      }
+      // dispatch document event for easy client reading
+      document.dispatchEvent(
+        new CustomEvent(title.title, {
+          detail: {},
+        }),
+      );
     }
   }
 
@@ -88,7 +88,7 @@
 
 <div class="header">
   {#if title || titleImageUrl}
-    <a href="https://google.com" target="_blank" class="title">
+    <a href={titleUrl} class="title">
 
       {#if titleImageUrl}
         <img class="title_logo" alt="logo" width="36px" height="34px" style="padding: 6px; margin-top: 4px;" src={titleImageUrl} />

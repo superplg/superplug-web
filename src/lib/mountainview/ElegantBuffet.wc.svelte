@@ -10,6 +10,7 @@
 
   let {
     title="",
+    titleUrl="/",
     titleImageUrl="",
     headerMenus=[],
     searchtext="",
@@ -25,10 +26,11 @@
   }:
   {
     title: string,
+    titleUrl: string,
     titleImageUrl: string,
     headerMenus: {
       title: string,
-      url: string
+      titleUrl: string
       imageUrl: string,
       imageShape: string,
       items: {
@@ -62,11 +64,13 @@
       link: string,
       categories: {
         name: string,
-        imageUrl: string
+        imageUrl: string,
+        symbol: string
       }[],
       types: {
         name: string,
-        imageUrl: string
+        imageUrl: string,
+        symbol: string
       }[]
     }[]
   } = $props();
@@ -79,7 +83,7 @@
 
 </script>
 
-<ElegantHeader {title} {titleImageUrl} {headerMenus}></ElegantHeader>
+<ElegantHeader {title} {titleUrl} {titleImageUrl} {headerMenus}></ElegantHeader>
 
 <ElegantHeroSearch {title} {titleImageUrl} bind:searchtext {searchloadresults} {searchsubmit} />
 
@@ -90,7 +94,7 @@
 {#if view === "CARD"}
   <ElegantPageCard {items}/>
 {:else}
-  <ElegantTable {tableHeaders} tableRows={items} linkprefix="" linkcolumnname="link" update={undefined} />
+  <ElegantTable {tableHeaders} tableRows={items} linkprefix="" linkcolumnname="link" tableRowClick={undefined} />
 {/if}
 
 <style>

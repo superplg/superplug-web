@@ -39,7 +39,9 @@
   <a href={item.link} class="title">{item.title}</a>
 
   <a class="author" href={item.authorUrl} target="_blank">
+    {#if item.authorImageUrl}
     <img src={item.authorImageUrl} alt="profile"/>
+    {/if}
     {item.authorName}
   </a>
   <div class="footer">
