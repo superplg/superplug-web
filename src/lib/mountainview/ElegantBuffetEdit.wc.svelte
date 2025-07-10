@@ -29,7 +29,7 @@
     items: {
       id: string;
       label: string;
-      initialValue: string;
+      value: string;
       type: string;
       options: string;
     }[];
@@ -46,12 +46,12 @@
 <form class="edit_frame">
   {#each items as item}
     {#if item.type == "input"}
-      <IngInput label={item.label} input={item.initialValue} />
+      <IngInput label={item.label} input={item.value} />
     {:else if item.type == "select"}
       <IngSelect
         label={item.label}
         items={item.options}
-        input={item.initialValue}
+        input={item.value}
       />
     {:else if item.type == "multiselect"}
       <IngMultiSelect label={item.label} items={item.options} />

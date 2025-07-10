@@ -31,12 +31,12 @@
         {
           label: "test 3",
           type: "select",
-          options: ["test 1", "test 2", "test 3"]
+          options: "test 1, test 2, test 3"
         },
         {
           label: "test 4",
           type: "multiselect",
-          options: ["test 1", "test 2", "test 3"]
+          options: "test 1, test2, test 3"
         },
         {
           id: "screenshot",

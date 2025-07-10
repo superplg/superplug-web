@@ -44,10 +44,10 @@
       menuVisibleFlags[name] = false;
   }
 
-  function menuLinkClick(e: any, title: {title: string, url: string}) {
+  function menuLinkClick(e: any, title: {title: string, titleUrl: string}) {
     e.stopPropagation();
-    if (title.url) {
-      window.location.href = title.url;
+    if (title.titleUrl) {
+      window.location.href = title.titleUrl;
     } else {
       // dispatch document event for easy client reading
       document.dispatchEvent(
