@@ -1,0 +1,54 @@
+[14:57:40.929] [INFO] Storybook Upgrade - v9.0.16
+[14:57:40.944] [INFO] detect-projects-spinner-start: Detecting projects...
+[14:57:40.945] [DEBUG] Finding Storybook projects...
+[14:57:40.979] [DEBUG] Found 1 Storybook projects
+[14:57:40.980] [INFO] detect-projects-spinner: Detecting projects: 1 projects
+[14:57:40.981] [DEBUG] Getting Storybook data...
+[14:57:40.981] [DEBUG] Getting Storybook info...
+[14:57:40.981] [DEBUG] Loading main config...
+[14:57:41.001] [DEBUG] Error: Unable to find or evaluate /home/tyayers/projects/innovation/superplug-web/.storybook/main.ts: SB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your .storybook/main.ts file.
+
+Original error:
+Error [ERR_REQUIRE_ESM]: require() of ES Module /.storybook/main.ts from /home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs not supported.
+Instead change the require of main.ts in /home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs to a dynamic import() which is available in all CommonJS modules.
+    at Object.newLoader [as .ts] (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/esbuild-register/dist/node.js:2262:9)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at interopRequireDefault (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs:18760:11)
+[14:57:41.001] [INFO] detect-projects-spinner-stop: 1 project detected
+[14:57:41.001] [DEBUG] Found 0 valid projects and 1 error projects
+[14:57:41.002] [ERROR] Failed to get projects
+[14:57:41.013] [ERROR] Error: ❌ Storybook found errors while collecting data for the following projects:
+/.storybook:
+Error: Unable to find or evaluate ./.storybook/main.ts: SB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your .storybook/main.ts file.
+
+Original error:
+Error [ERR_REQUIRE_ESM]: require() of ES Module /.storybook/main.ts from /home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs not supported.
+Instead change the require of main.ts in /home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs to a dynamic import() which is available in all CommonJS modules.
+    at Object.newLoader [as .ts] (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/esbuild-register/dist/node.js:2262:9)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at interopRequireDefault (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs:18760:11)
+    at getStorybookData (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/@storybook/cli/dist/bin/index.cjs:78:2455)
+    at async processProject (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/@storybook/cli/dist/bin/index.cjs:71:5428)
+Please fix the errors and run the upgrade command again.
+    at getProjects (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/@storybook/cli/dist/bin/index.cjs:76:10)
+    at async /home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/@storybook/cli/dist/bin/index.cjs:285:1624
+    at async withTelemetry (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/core-server/index.cjs:36157:12)
+    at async upgrade (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/@storybook/cli/dist/bin/index.cjs:285:1348)
+    at async Command.<anonymous> (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/@storybook/cli/dist/bin/index.cjs:291:3274)
+[14:57:41.035] [INFO] Attention: Storybook now collects completely anonymous telemetry regarding usage. This information is used to shape Storybook's roadmap and prioritize features.
+[14:57:41.044] [INFO] You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[14:57:41.051] [INFO] https://storybook.js.org/telemetry
+[14:57:41.060] [INFO] 
+[14:57:41.731] [ERROR] Error: ❌ Storybook found errors while collecting data for the following projects:
+/.storybook:
+Error: Unable to find or evaluate ./.storybook/main.ts: SB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your .storybook/main.ts file.
+
+Original error:
+Error [ERR_REQUIRE_ESM]: require() of ES Module /.storybook/main.ts from /home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs not supported.
+Instead change the require of main.ts in /home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs to a dynamic import() which is available in all CommonJS modules.
+    at Object.newLoader [as .ts] (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/esbuild-register/dist/node.js:2262:9)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at interopRequireDefault (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/storybook/dist/common/index.cjs:18760:11)
+    at getStorybookData (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/@storybook/cli/dist/bin/index.cjs:78:2455)
+    at async processProject (/home/tyayers/.npm/_npx/788f077b077bfa60/node_modules/@storybook/cli/dist/bin/index.cjs:71:5428)
+Please fix the errors and run the upgrade command again.
