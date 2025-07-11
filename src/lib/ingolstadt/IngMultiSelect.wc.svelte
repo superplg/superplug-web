@@ -6,27 +6,53 @@
     icon = "",
     placeholder = "",
     items = "",
-    input = $bindable(""),
-    selectStyle=""
+    value = $bindable(""),
+    selectStyle = "",
   }: {
-    label: string,
-    icon?: string,
-    placeholder?: string,
-    items: string,
-    input?: string,
-    selectStyle?: string
+    label: string;
+    icon?: string;
+    placeholder?: string;
+    items: string;
+    value?: string;
+    selectStyle?: string;
   } = $props();
 
-  let realItems: string[] = items.split(",");
+  let realItems: string[] = items.split(",").map((item) => item.trim());
+  let realValues: string[] = [];
+  if (value) realValues = value.split(",").map((item) => item.trim());
+  let realChecked: { [key: string]: boolean } = {};
+
+  for (let option of realItems) {
+    if (realValues.includes(option)) {
+      realChecked[option] = true;
+    } else {
+      realChecked[option] = false;
+    }
+  }
+
+  console.log(realItems);
+  console.log(realValues);
+  console.log(realChecked);
 
   const inputChanged = (e: any) => {
     if (e && e.target) {
-      let inputValue = "";
-      inputValue = e.target.checked;
+      let inputName = e.target.id;
+      let inputValue = e.target.checked;
 
       //console.log(e.target.id);
-      console.log(e.target.id);
+      console.log(inputName);
       console.log(inputValue);
+
+      if (inputValue && !realValues.includes(inputName)) {
+        realValues.push(inputName);
+      } else if (!inputValue && realValues.includes(inputName)) {
+        let index = realValues.indexOf(inputName);
+        realValues.splice(index, 1);
+      }
+
+      inputValue = realValues.join(",");
+      console.log(realValues);
+      console.log(realChecked);
 
       // set inner value for web components
       //$host().innerText = inputValue;
@@ -35,7 +61,7 @@
       document.dispatchEvent(
         new CustomEvent("SelectChangedEvent", {
           detail: {
-            id: "hh",
+            id: label,
             input: inputValue,
           },
         }),
@@ -66,7 +92,15 @@
       <!-- <legend style="padding-top: 12px;">{label}</legend> -->
       {#each realItems as option}
         <div>
-          <input type="checkbox" id={option} name={option} oninput={(e) => {inputChanged(e)}} />
+          <input
+            type="checkbox"
+            id={option}
+            name={option}
+            onchange={(e) => {
+              inputChanged(e);
+            }}
+            bind:checked={realChecked[option]}
+          />
           <label for={option}>{option}</label>
         </div>
       {/each}

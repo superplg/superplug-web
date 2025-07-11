@@ -45,16 +45,16 @@
 
 <form class="edit_frame">
   {#each items as item}
-    {#if item.type == "input"}
-      <IngInput label={item.label} input={item.value} />
+    {#if item.type == "input" || item.type == "textarea"}
+      <IngInput label={item.label} input={item.value} type={item.type}/>
     {:else if item.type == "select"}
       <IngSelect
         label={item.label}
         items={item.options}
-        input={item.value}
+        value={item.value}
       />
     {:else if item.type == "multiselect"}
-      <IngMultiSelect label={item.label} items={item.options} />
+      <IngMultiSelect label={item.label} items={item.options} value={item.value}/>
     {:else if item.type == "file"}
       <div style="margin-bottom: 6px;">
         <label for={item.id}>{item.label}</label>

@@ -20,23 +20,31 @@
       items: [
         {
           label: "test 1",
-          initialValue: "test",
+          value: "test",
           type: "input"
         },
         {
           label: "test 2",
-          initialValue: "",
+          value: "",
           type: "input"
         },
         {
           label: "test 3",
           type: "select",
+          value: "test 1",
           options: "test 1, test 2, test 3"
         },
         {
           label: "test 4",
           type: "multiselect",
-          options: "test 1, test2, test 3"
+          value: "test 1, test 2",
+          options: "test 1, test 2, test 3"
+        },
+        {
+          label: "test 4",
+          type: "multiselect",
+          value: "test 1",
+          options: "test 1"
         },
         {
           id: "screenshot",

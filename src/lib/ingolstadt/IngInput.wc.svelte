@@ -59,7 +59,11 @@
       </span>
     {/if}
 
+    {#if type == "textarea"}
+    <textarea id={inputId} class="input_field" rows="10" {placeholder} style="height: auto;" bind:value={input} oninput={(e) => {inputChanged(e)}}></textarea>
+    {:else}
     <input id={inputId} class="input_field" {type} {placeholder} bind:value={input} oninput={(e) => {inputChanged(e)}} />
+    {/if}
   </div>
 </div>
 

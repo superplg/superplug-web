@@ -6,14 +6,14 @@
     icon = "",
     placeholder = "",
     items = "",
-    input = $bindable(""),
+    value = $bindable(""),
     selectStyle=""
   }: {
     label: string,
     icon?: string,
     placeholder?: string,
     items: string,
-    input?: string,
+    value?: string,
     selectStyle?: string
   } = $props();
 
@@ -58,7 +58,7 @@
       </span>
     {/if}
 
-    <select class="input_field" {placeholder} bind:value={input} oninput={(e) => {inputChanged(e)}}>
+    <select class="input_field" {placeholder} bind:value={value} oninput={(e) => {inputChanged(e)}}>
       {#each realItems as item}
         <option>{item}</option>
       {/each}
