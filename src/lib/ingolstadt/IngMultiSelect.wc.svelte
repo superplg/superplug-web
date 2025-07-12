@@ -2,20 +2,26 @@
 
 <script lang="ts">
   let {
+    inputId = "",
     label = "",
     icon = "",
     placeholder = "",
     items = "",
     value = $bindable(""),
     selectStyle = "",
+    inputChanged = undefined
   }: {
+    inputId?: string;
     label: string;
     icon?: string;
     placeholder?: string;
     items: string;
     value?: string;
     selectStyle?: string;
+    inputChanged?: (id: string, value: string) => void;
   } = $props();
+
+  if (inputId == "") inputId = label;
 
   let realItems: string[] = items.split(",").map((item) => item.trim());
   let realValues: string[] = [];
@@ -30,18 +36,10 @@
     }
   }
 
-  console.log(realItems);
-  console.log(realValues);
-  console.log(realChecked);
-
-  const inputChanged = (e: any) => {
+  const localInputChanged = (e: any) => {
     if (e && e.target) {
       let inputName = e.target.id;
       let inputValue = e.target.checked;
-
-      //console.log(e.target.id);
-      console.log(inputName);
-      console.log(inputValue);
 
       if (inputValue && !realValues.includes(inputName)) {
         realValues.push(inputName);
@@ -50,27 +48,19 @@
         realValues.splice(index, 1);
       }
 
-      inputValue = realValues.join(",");
-      console.log(realValues);
-      console.log(realChecked);
+      value = realValues.join(",");
 
-      // set inner value for web components
-      //$host().innerText = inputValue;
+      if (inputChanged) inputChanged(inputId, value);
 
       // dispatch document event for easy client reading
       document.dispatchEvent(
         new CustomEvent("SelectChangedEvent", {
           detail: {
-            id: label,
-            input: inputValue,
+            id: inputId,
+            input: value,
           },
         }),
       );
-
-      // dispatch local element event, maybe also useful
-      // $host().dispatchEvent(new CustomEvent("inputchanged", {detail: {
-      //   input: inputValue
-      // }}));
     }
   };
 </script>
@@ -97,9 +87,10 @@
             id={option}
             name={option}
             onchange={(e) => {
-              inputChanged(e);
+              localInputChanged(e);
             }}
             bind:checked={realChecked[option]}
+            form=""
           />
           <label for={option}>{option}</label>
         </div>

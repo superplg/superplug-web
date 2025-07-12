@@ -16,31 +16,37 @@
     type="text", 
     placeholder = "", 
     input =  $bindable(""),
-    inputStyle = ""
+    inputStyle = "",
+    inputChanged = undefined
+  }: {
+    inputId?: string,
+    label: string,
+    icon?: string,
+    type?: string,
+    placeholder?: string,
+    input?: string,
+    inputStyle?: string,
+    inputChanged?: (id: string, value: string) => void;
   } = $props();
 
-  const inputChanged = (e: any) => {
-    if (e && e.target && $host()) {
+  if (inputId == "") inputId = label;
+
+  const localInputChanged = (e: any) => {
+    if (e && e.target) {
       let inputValue = "";
       if (e.target.value) inputValue = e.target.value;
 
-      // set inner value for web components
-      $host().innerText = inputValue;
+      if (inputChanged) inputChanged(inputId, inputValue);
 
       // dispatch document event for easy client reading
       document.dispatchEvent(
         new CustomEvent("InputChangedEvent", {
           detail: {
-            id: $host().id,
+            id: inputId,
             input: inputValue,
           },
         }),
       );
-
-      // dispatch local element event, maybe also useful
-      $host().dispatchEvent(new CustomEvent("inputchanged", {detail: {
-        input: inputValue
-      }}));
     }
   };
 
@@ -56,13 +62,13 @@
     {#if icon}
       <span class="input_icon">
         <img width="16px" src={icon} alt="in" />
-      </span>
+      </span>""
     {/if}
 
     {#if type == "textarea"}
-    <textarea id={inputId} class="input_field" rows="10" {placeholder} style="height: auto;" bind:value={input} oninput={(e) => {inputChanged(e)}}></textarea>
+    <textarea id={inputId} name={inputId} class="input_field" rows="10" {placeholder} style="height: auto;" bind:value={input} oninput={(e) => {localInputChanged(e)}} form=""></textarea>
     {:else}
-    <input id={inputId} class="input_field" {type} {placeholder} bind:value={input} oninput={(e) => {inputChanged(e)}} />
+    <input id={inputId} name={inputId} class="input_field" {type} {placeholder} bind:value={input} oninput={(e) => {localInputChanged(e)}} form="" />
     {/if}
   </div>
 </div>
@@ -97,7 +103,8 @@
     box-shadow: none;
     width: 280px;
     border: 0.0625rem solid #d1d7e0;
-    color: #66799e;
+    /* color: #66799e; */
+    color: #000;
     background-color: transparent;
     background-clip: padding-box;
     appearance: none;

@@ -2,45 +2,44 @@
 
 <script lang="ts">
   let {
+    inputId = "",
     label = "",
     icon = "",
     placeholder = "",
     items = "",
     value = $bindable(""),
-    selectStyle=""
+    selectStyle="",
+    inputChanged=undefined
   }: {
+    inputId?: string,
     label: string,
     icon?: string,
     placeholder?: string,
     items: string,
     value?: string,
-    selectStyle?: string
+    selectStyle?: string,
+    inputChanged?: (id: string, value: string) => void;
   } = $props();
 
+  if (inputId == "") inputId = label;
   let realItems: string[] = items.split(",");
 
-  const inputChanged = (e: any) => {
-    if (e && e.target && $host()) {
+  const localInputChanged = (e: any) => {
+    if (e && e.target) {
       let inputValue = "";
       if (e.target.value) inputValue = e.target.value;
 
-      // set inner value for web components
-      $host().innerText = inputValue;
+      if (inputChanged) inputChanged(inputId, inputValue);
 
       // dispatch document event for easy client reading
       document.dispatchEvent(
         new CustomEvent("SelectChangedEvent", {
           detail: {
-            id: $host().id,
+            id: inputId,
             input: inputValue,
           },
         }),
       );
-
-      // dispatch local element event, maybe also useful
-      $host().dispatchEvent(new CustomEvent("inputchanged", {detail: {
-        input: inputValue
-      }}));
     }
   };
 </script>
@@ -58,7 +57,7 @@
       </span>
     {/if}
 
-    <select class="input_field" {placeholder} bind:value={value} oninput={(e) => {inputChanged(e)}}>
+    <select class="input_field" {placeholder} bind:value={value} oninput={(e) => {localInputChanged(e)}} form="">
       {#each realItems as item}
         <option>{item}</option>
       {/each}
