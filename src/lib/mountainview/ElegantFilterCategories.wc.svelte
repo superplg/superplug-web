@@ -1,13 +1,20 @@
 <svelte:options customElement="mv-elegant-filtercats" />
 
 <script lang="ts">
-  let { categories, categoryselect }: {
+  let {
+    categories,
+    categoryselect,
+  }: {
     categories: {
-        name: string,
-        letter: string
-      }[],
-      categoryselect: (categoryState: {[key: string]: boolean}) => void
+      name: string;
+      symbol: string;
+    }[];
+    categoryselect: (categoryState: { [key: string]: boolean }) => void;
   } = $props();
+
+  if (typeof(categories) == "string") {
+    categories = JSON.parse(categories);
+  }
 
   let selected: { [key: string]: boolean } = $state({});
 
@@ -31,7 +38,7 @@
         class:letter_selected={selected[category.name]}
         onclick={() => categoryClick(category.name)}
       >
-        {category.letter}
+        {category.symbol}
       </div>
       <div class="name">
         {category.name}

@@ -89,16 +89,16 @@
     }]);
 
   const categories = $state([
-    {name: "Apigee X", letter: "X"}, 
-    {name: "OPDK", letter: "O"},
-    {name: "Kubernetes", letter: "K"},
-    {name: "Hybrid", letter: "H"} 
+    {name: "Apigee X", symbol: "X"}, 
+    {name: "OPDK", symbol: "O"},
+    {name: "Kubernetes", symbol: "K"},
+    {name: "Hybrid", symbol: "H"} 
   ]);
 
   const types = $state([
-    {name: "Docs", icon: "🕮"},
-    {name: "Tools", icon: "🖰"},
-    {name: "Recordings", icon: "🖭"}
+    {name: "Docs", symbol: "🕮"},
+    {name: "Tools", symbol: "🖰"},
+    {name: "Recordings", symbol: "🖭"}
   ]);
 
   const sorts = $state(["Latest", "Most claps", "Most comments"]);

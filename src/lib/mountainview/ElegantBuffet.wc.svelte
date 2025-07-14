@@ -20,7 +20,7 @@
     categoryselect,
     types=[],
     typeselect,
-    sorts=[],
+    sortTypes="",
     sortselect,
     items
   }:
@@ -43,15 +43,15 @@
     searchsubmit: (text: string) => void,
     categories: {
       name: string,
-      letter: string
+      symbol: string
     }[],
     categoryselect: (categoryState: {[key: string]: boolean}) => void,
     types: {
       name: string,
-      icon: string
+      symbol: string
     }[],
     typeselect: (typeState: {[key: string]: boolean}) => void,
-    sorts: string[],
+    sortTypes: string,
     sortselect: (sort: string) => void,
     items: {
       title: string,
@@ -89,7 +89,7 @@
 
 <ElegantFilterCategories {categories} {categoryselect} />
 
-<ElegantFilterTypes {types} {sorts} {typeselect} {sortselect} bind:view />
+<ElegantFilterTypes {types} {sortTypes} {typeselect} {sortselect} bind:view />
 
 {#if view === "CARD"}
   <ElegantPageCard {items}/>

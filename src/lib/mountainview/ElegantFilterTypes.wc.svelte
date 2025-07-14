@@ -5,7 +5,7 @@
 
   let {
     types,
-    sorts,
+    sortTypes,
     typeselect,
     sortselect,
     view = $bindable("card"),
@@ -13,15 +13,21 @@
   }: {
     types: {
       name: string,
-      icon: string
+      symbol: string
     }[],
-    sorts: string[],
+    sortTypes: string,
     typeselect: (typeState: {[key: string]: boolean}) => void,
     sortselect: (sort: string) => void,
     view: string,
     viewselect?: (view: string) => void
   } = $props();
 
+  if (typeof(types) == "string") {
+    types = JSON.parse(types);
+  }
+
+  let sorts: string[] = sortTypes.split(",").map(s => s.trim());
+  
   let selected: { [key: string]: boolean } = $state({});
 
   function typeClick(name: string) {
@@ -63,7 +69,7 @@
         {#if selected[type.name] === true}
           <div class="icon">✓</div>
         {:else}
-          <div class="icon">{type.icon}</div>
+          <div class="icon">{type.symbol}</div>
         {/if}
         <div class="name">{type.name}</div>
       </div>
