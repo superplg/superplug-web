@@ -19,9 +19,10 @@
     categories=[],
     categoryselect,
     types=[],
-    typeselect,
+    onTypeSelect,
     sortTypes="",
-    sortselect,
+    onSortSelect,
+    sortSelected = $bindable(""),
     items
   }:
   {
@@ -50,9 +51,10 @@
       name: string,
       symbol: string
     }[],
-    typeselect: (typeState: {[key: string]: boolean}) => void,
+    onTypeSelect: (typeState: {[key: string]: boolean}) => void,
     sortTypes: string,
-    sortselect: (sort: string) => void,
+    sortSelected: string,
+    onSortSelect: (sort: string) => void,
     items: {
       title: string,
       dateTime: string,
@@ -89,7 +91,7 @@
 
 <ElegantFilterCategories {categories} {categoryselect} />
 
-<ElegantFilterTypes {types} {sortTypes} {typeselect} {sortselect} bind:view />
+<ElegantFilterTypes {types} {sortTypes} {sortSelected} {onTypeSelect} {onSortSelect} bind:view />
 
 {#if view === "CARD"}
   <ElegantPageCard {items}/>

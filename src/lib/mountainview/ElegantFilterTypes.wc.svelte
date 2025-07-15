@@ -6,8 +6,9 @@
   let {
     types,
     sortTypes,
-    typeselect,
-    sortselect,
+    sortSelected = $bindable(""),
+    onTypeSelect,
+    onSortSelect,
     view = $bindable("card"),
     viewselect,
   }: {
@@ -16,8 +17,9 @@
       symbol: string
     }[],
     sortTypes: string,
-    typeselect: (typeState: {[key: string]: boolean}) => void,
-    sortselect: (sort: string) => void,
+    sortSelected: string,
+    onTypeSelect: (typeState: {[key: string]: boolean}) => void,
+    onSortSelect: (sort: string) => void,
     view: string,
     viewselect?: (view: string) => void
   } = $props();
@@ -28,20 +30,24 @@
 
   let sorts: string[] = sortTypes.split(",").map(s => s.trim());
   
+  if (!sortSelected) {
+    sortSelected = sorts[0];
+  }
+
   let selected: { [key: string]: boolean } = $state({});
 
   function typeClick(name: string) {
     if (!selected[name]) selected[name] = true;
     else selected[name] = false;
 
-    if (typeselect) {
-      typeselect(selected);
+    if (onTypeSelect) {
+      onTypeSelect(selected);
     }
   }
 
   function sortSelect(select: string) {
-    if (sortselect) {
-      sortselect(select);
+    if (onSortSelect) {
+      onSortSelect(select);
     }
   }
 
@@ -157,7 +163,7 @@
         >
       {/if}
     </button>
-    <ElegantSelect input="Latest" options={sorts} onInput={sortSelect} />
+    <ElegantSelect input={sortSelected} options={sorts} onInput={sortSelect} />
   </div>
 </div>
 
