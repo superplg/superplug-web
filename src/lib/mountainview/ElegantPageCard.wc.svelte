@@ -1,24 +1,45 @@
 <svelte:options customElement="mv-elegant-cardpage" />
 
 <script lang="ts">
-import { fade, slide, fly, blur, scale } from 'svelte/transition';
-import { linear } from 'svelte/easing';
-import ElegantFilterTypes from "./ElegantFilterTypes.wc.svelte";
-import ElegantCard from "./ElegantCard.wc.svelte";
+  import ElegantCard from "./ElegantCard.wc.svelte";
 
-let {items} = $props();
+  let { 
+    items = $bindable([]) 
+  }: {
+    items: {
+      title: string,
+      dateTime: string,
+      imageUrl: string,
+      authorName: string,
+      authorUrl: string,
+      authorImageUrl: string,
+      description: string,
+      link: string,
+      hidden: boolean,
+      categories: {
+        name: string,
+        imageUrl: string,
+        symbol: string
+      }[],
+      types: {
+        name: string,
+        imageUrl: string,
+        symbol: string
+      }[]
+    }[]
+  } = $props();
 
-if (typeof(items) == "string") {
-  items = JSON.parse(items);
-}
+  if (typeof items == "string") {
+    items = JSON.parse(items);
+  }
 </script>
 
 <div class="menu_frame">
-
   {#each items as item}
-    <ElegantCard {item}/>
+    {#if !item.hidden}
+      <ElegantCard {item} />
+    {/if}
   {/each}
-
 </div>
 
 <style>

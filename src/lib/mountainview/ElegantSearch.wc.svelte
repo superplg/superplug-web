@@ -40,6 +40,18 @@
       );
 
       searchtext = "";
+    } else {
+      if (searchsubmit) {
+        searchsubmit(searchtext);
+      }
+
+      document.dispatchEvent(
+        new CustomEvent("SearchSubmit", {
+          detail: {
+            text: searchtext,
+          },
+        }),
+      );
     }
   }
 </script>

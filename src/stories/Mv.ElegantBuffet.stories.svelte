@@ -47,7 +47,7 @@
       dateTime: "2 days ago",
       categories: [
         {
-          title: "Kubernetes",
+          name: "Kubernetes",
           url: "/kubernetes.png"
         }
       ],
@@ -60,7 +60,7 @@
       link: "https://google.com",
       types: [
         {
-          title: "Kubernetes",
+          name: "Docs",
           url: "/kubernetes.png"
         }
       ]
@@ -69,7 +69,7 @@
       dateTime: "2 days ago",
       categories: [
         {
-          title: "Kubernetes",
+          name: "Kubernetes",
           url: "/kubernetes.png"
         }
       ],
@@ -82,7 +82,7 @@
       link: "https://google.com",
       types: [
         {
-          title: "Kubernetes",
+          name: "Docs",
           url: "/kubernetes.png"
         }
       ]
@@ -131,7 +131,7 @@
 </script>
 
 <!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
-<Story name="Primary" args={{ title: "CommonSky", titleImageUrl: '/favicon.png', menus: menus, search: search, onSearch: onSearch, items: items, categories: categories, onCategorySelect: onCategorySelect, types: types, onTypeSelect: onTypeSelect, sorts: sorts, onSortSelect: onSortSelect}}>
+<Story name="Primary" args={{ title: "CommonSky", titleImageUrl: '/favicon.png', menus: menus, search: search, items: items, categories: categories, types: types, sorts: sorts, onSortSelect: onSortSelect}}>
 </Story>
 
 <style>
