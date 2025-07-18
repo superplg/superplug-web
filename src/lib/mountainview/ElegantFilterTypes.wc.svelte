@@ -41,6 +41,8 @@
     else selected[name] = false;
 
     if (onTypeSelect) {
+      console.log("sending type selected data: " + JSON.stringify(selected));
+      
       onTypeSelect(selected);
     }
   }

@@ -7,7 +7,7 @@
 <script lang="ts">
   let {
     tableHeaders = [],
-    tableRows = [],
+    tableRows = $bindable([]),
     linkprefix = "",
     linkcolumnname = "",
     tableRowClick = undefined,

@@ -78,6 +78,10 @@
     }[]
   } = $props();
 
+  if (typeof items == "string") {
+    items = JSON.parse(items);
+  }
+
   let view = $state("CARD");
   let tableHeaders:{name: string, displayName: string, searchable: boolean}[] = $state([
     { name: "dateTime", displayName: "Date", searchable: false},
@@ -99,7 +103,6 @@
 
   function categorySelect(selected: {[key: string]: boolean}) {
     categorySelections = selected;
-
     if (categoryselect) {
       categoryselect(selected);
     } else {
@@ -109,7 +112,6 @@
 
   function typeSelect(selected: {[key: string]: boolean}) {
     typeSelections = selected;
-    console.log(typeSelections);
     if (onTypeSelect) {
       onTypeSelect(selected)
     } else {
@@ -118,18 +120,17 @@
   }
 
   function setVisibleItems() {
-    console.log("Setting visible items");
     for (let item of items) {
       let itemHidden = false;
       // check search
-      if (searchText != "" &&
+      if (searchText != "" && item.description && item.title && item.authorName &&
           (!item.title.toLowerCase().includes(searchText.toLowerCase()) ||
           !item.description.toLowerCase().includes(searchText.toLowerCase()) ||
           !item.authorName.toLowerCase().includes(searchText.toLowerCase()))) {
         itemHidden = true;
       }
       // check categories if item still hidden
-      if (!itemHidden) {
+      if (!itemHidden && item.categories) {
         for(let key of Object.keys(categorySelections)) {
           const cat = item.categories.find(category => category.name === key);
           if (categorySelections[key] && !cat) {
@@ -139,9 +140,8 @@
         }
       }
       // check types, if item is still hidden
-      if (!itemHidden) {
+      if (!itemHidden && item.types) {
         for(let key of Object.keys(typeSelections)) {
-          console.log(key + JSON.stringify(item.types));
           const t = item.types.find(type => type.name === key);
           if (typeSelections[key] && !t) {
             itemHidden = true;
@@ -151,6 +151,8 @@
       }
       item.hidden = itemHidden;
     }
+
+    items = items;
   }
 </script>
 
@@ -163,9 +165,9 @@
 <ElegantFilterTypes {types} {sortTypes} {sortSelected} onTypeSelect={typeSelect} {onSortSelect} bind:view />
 
 {#if view === "CARD"}
-  <ElegantPageCard {items}/>
+  <ElegantPageCard bind:items={items}/>
 {:else}
-  <ElegantTable {tableHeaders} tableRows={items} linkprefix="" linkcolumnname="link" tableRowClick={undefined} />
+  <ElegantTable {tableHeaders} bind:tableRows={items} linkprefix="" linkcolumnname="link" tableRowClick={undefined} />
 {/if}
 
 <style>

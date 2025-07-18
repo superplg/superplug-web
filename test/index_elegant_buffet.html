@@ -44,7 +44,7 @@
         dateTime: "2 days ago",
         categories: [
           {
-            title: "Kubernetes",
+            name: "Kubernetes",
             url: "kubernetes.png"
           }
         ],
@@ -57,7 +57,7 @@
         link: "https://google.com",
         types: [
           {
-            title: "Kubernetes",
+            name: "Docs",
             url: "kubernetes.png"
           }
         ]
@@ -66,7 +66,7 @@
         dateTime: "2 days ago",
         categories: [
           {
-            title: "Kubernetes",
+            name: "Kubernetes",
             url: "kubernetes.png"
           }
         ],
@@ -79,17 +79,32 @@
         link: "https://google.com",
         types: [
           {
-            title: "Kubernetes",
+            name: "Slides",
             url: "kubernetes.png"
           }
         ]
       }
     ];
 
+    const categories = [
+      {name: "Apigee X", symbol: "X"}, 
+      {name: "OPDK", symbol: "O"},
+      {name: "Kubernetes", symbol: "K"},
+      {name: "Hybrid", symbol: "H"} 
+    ];
+
+    const types = [
+      {name: "Docs", symbol: "🕮"},
+      {name: "Tools", symbol: "🖰"},
+      {name: "Recordings", symbol: "🖭"}
+    ];
+
     customElements.whenDefined('mv-elegant-buffet').then(() => {
       let buffet = document.querySelector('mv-elegant-buffet');
       buffet.setAttribute("items", JSON.stringify(items));
-      buffet.setAttribute("headerMenus", JSON.stringify(menus));   
+      buffet.setAttribute("headerMenus", JSON.stringify(menus));
+      buffet.setAttribute("types", JSON.stringify(types));   
+      buffet.setAttribute("categories", JSON.stringify(categories));   
     });
   </script>
 
