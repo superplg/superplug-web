@@ -124,11 +124,13 @@
       let itemHidden = false;
       // check search
       if (searchText != "" && item.description && item.title && item.authorName &&
-          (!item.title.toLowerCase().includes(searchText.toLowerCase()) ||
-          !item.description.toLowerCase().includes(searchText.toLowerCase()) ||
+          (!item.title.toLowerCase().includes(searchText.toLowerCase()) &&
+          !item.description.toLowerCase().includes(searchText.toLowerCase()) &&
           !item.authorName.toLowerCase().includes(searchText.toLowerCase()))) {
         itemHidden = true;
-      }
+      } else if (searchText != "" && item.description == "")
+        itemHidden = true;
+      
       // check categories if item still hidden
       if (!itemHidden && item.categories) {
         for(let key of Object.keys(categorySelections)) {

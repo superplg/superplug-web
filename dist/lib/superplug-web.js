@@ -1137,7 +1137,7 @@ function _i(t) {
   const e = Bt.get(t);
   e && e();
 }
-function R(t, e, r, n = null, i = !1) {
+function H(t, e, r, n = null, i = !1) {
   j && Ue();
   var a = t, l = null, s = null, u = null, o = i ? kt : 0;
   St(() => {
@@ -1285,13 +1285,13 @@ function bi(t, e, r, n, i, a, l) {
   if (d !== null || b !== void 0) {
     for (var N = b === void 0 ? [] : Wt(b); d !== null; )
       (a || !(d.e.f & ge)) && N.push(d), d = d.next;
-    var H = N.length;
-    if (H > 0) {
+    var R = N.length;
+    if (R > 0) {
       var J = i & yr && o === 0 ? r : null;
       if (s) {
-        for (w = 0; w < H; w += 1)
+        for (w = 0; w < R; w += 1)
           (he = N[w].a) == null || he.measure();
-        for (w = 0; w < H; w += 1)
+        for (w = 0; w < R; w += 1)
           (ye = N[w].a) == null || ye.fix();
       }
       mi(e, N, J, v);
@@ -2160,17 +2160,17 @@ function Nt(t, e) {
     }
   };
   var c = Yi(), d = S(c);
-  R(d, n, (m) => {
+  H(d, n, (m) => {
     var g = Fi(), _ = S(g, !0);
     x(g), $(() => M(_, n())), C(m, g);
   });
   var b = T(d, 2), f = S(b);
-  R(f, i, (m) => {
+  H(f, i, (m) => {
     var g = Bi(), _ = B(g), p = S(_);
     x(_), en(), $(() => A(p, "src", i())), C(m, g);
   });
   var y = T(f, 2);
-  R(
+  H(
     y,
     () => a() == "textarea",
     (m) => {
@@ -2218,7 +2218,7 @@ function ir(t, e) {
   var a = ea(), l = T(S(a), 2);
   X(l, 21, n, Z, (s, u) => {
     var o = Qi(), v = S(o);
-    R(
+    H(
       v,
       () => h(u).url,
       (c) => {
@@ -2268,21 +2268,21 @@ function fn(t, e) {
   var f = T(b, 2);
   f.textContent = s, x(d);
   var y = T(d, 2), m = S(y);
-  R(
+  H(
     m,
     i,
     (g) => {
       var _ = ia(), p = B(_), k = S(p);
-      R(k, n, (V) => {
-        var N = ra(), H = B(N);
-        en(2), $(() => A(H, "src", n())), C(V, N);
+      H(k, n, (V) => {
+        var N = ra(), R = B(N);
+        en(2), $(() => A(R, "src", n())), C(V, N);
       });
       var w = T(k, 2);
       w.__click = [na, u];
       var I = S(w), z = T(I, 2), O = S(z, !0);
       x(z), x(w), nr(w, (V) => Y(o, V), () => h(o)), x(p);
       var U = T(p, 2);
-      R(U, () => h(u), (V) => {
+      H(U, () => h(u), (V) => {
         var N = /* @__PURE__ */ Ze(v);
         ir(V, {
           menuItems: [
@@ -2298,7 +2298,7 @@ function fn(t, e) {
     },
     (g) => {
       var _ = ie(), p = B(_);
-      R(
+      H(
         p,
         i,
         (k) => {
@@ -2383,7 +2383,7 @@ function ya(t, e) {
     var k = ma(), w = B(k);
     w.__click = [ca, v, p];
     var I = S(w), z = S(I), O = S(z);
-    R(
+    H(
       O,
       () => h(p).icon,
       (J) => {
@@ -2398,12 +2398,12 @@ function ya(t, e) {
     var U = T(z, 2), V = S(U, !0);
     x(U);
     var N = T(U, 2);
-    R(N, () => h(p).subitems, (J) => {
+    H(N, () => h(p).subitems, (J) => {
       var G = ha();
       $(() => Ke(G, `${(o[h(p).title] ? "menu_item_expand expanded" : "menu_item_expand") ?? ""} svelte-v1mgvt`)), C(J, G);
     }), x(I), x(w);
-    var H = T(w, 2);
-    R(H, () => o[h(p).title] && h(p).subitems, (J) => {
+    var R = T(w, 2);
+    H(R, () => o[h(p).title] && h(p).subitems, (J) => {
       var G = _a();
       X(G, 21, () => h(p).subitems, Z, (he, ye) => {
         var we = ga();
@@ -2477,12 +2477,12 @@ function ar(t, e) {
     }
   };
   var d = Ca(), b = S(d);
-  R(b, n, (g) => {
+  H(b, n, (g) => {
     var _ = wa(), p = S(_, !0);
     x(_), $(() => M(p, n())), C(g, _);
   });
   var f = T(b, 2), y = S(f);
-  R(y, i, (g) => {
+  H(y, i, (g) => {
     var _ = ka(), p = S(_);
     x(_), $(() => A(p, "src", i())), C(g, _);
   });
@@ -2530,12 +2530,12 @@ function $a(t, e) {
     document.dispatchEvent(new CustomEvent("FormSubmitEvent", { detail: { schema: r(), object: u } }));
   }
   var i = Na(), a = S(i);
-  R(a, r, (u) => {
+  H(a, r, (u) => {
     var o = ie(), v = B(o);
     X(v, 17, () => Object.entries(r().properties), Z, (c, d) => {
       let b = () => h(d)[0], f = () => h(d)[1];
       var y = ie(), m = B(y);
-      R(
+      H(
         m,
         () => f().format == "header",
         (g) => {
@@ -2544,7 +2544,7 @@ function $a(t, e) {
         },
         (g) => {
           var _ = ie(), p = B(_);
-          R(
+          H(
             p,
             () => f().format == "select",
             (k) => {
@@ -2569,7 +2569,7 @@ function $a(t, e) {
             },
             (k) => {
               var w = ie(), I = B(w);
-              R(
+              H(
                 I,
                 () => f().type == "string",
                 (z) => {
@@ -2668,9 +2668,9 @@ function La(t, e) {
     I.__click = () => {
       v(w);
     }, X(I, 21, () => Object.entries(h(k)), Z, (O, U) => {
-      var V = za(), N = S(V), H = S(N, !0);
+      var V = za(), N = S(V), R = S(N, !0);
       x(N), x(V), $(() => {
-        A(N, "href", a() + h(k)[l()]), M(H, h(U)[1]);
+        A(N, "href", a() + h(k)[l()]), M(R, h(U)[1]);
       }), C(O, V);
     }), x(I), C(p, I);
   }), x(_), x(y), x(c), et(f, () => h(o), (p) => Y(o, p)), C(t, c), te();
@@ -2726,14 +2726,14 @@ function Tt(t, e) {
       l[m] = !1;
   };
   var d = Ga(), b = S(d);
-  R(b, () => r() || i(), (y) => {
+  H(b, () => r() || i(), (y) => {
     var m = Da(), g = S(m);
-    R(g, i, (p) => {
+    H(g, i, (p) => {
       var k = Ma();
       $(() => A(k, "src", i())), C(p, k);
     });
     var _ = T(g, 2);
-    R(_, r, (p) => {
+    H(_, r, (p) => {
       var k = ja(), w = S(k, !0);
       x(k), $(() => M(w, r())), C(p, k);
     }), x(m), $(() => A(m, "href", n())), C(y, m);
@@ -2743,7 +2743,7 @@ function Tt(t, e) {
     var g = Ja(), _ = B(g);
     $(() => A(_, "id", c(h(m).title + "_button"))), _.__click = [Fa, u, m];
     var p = S(_);
-    R(
+    H(
       p,
       () => h(m).imageUrl,
       (w) => {
@@ -2760,7 +2760,7 @@ function Tt(t, e) {
       }
     ), x(_);
     var k = T(_, 2);
-    R(k, () => l[h(m).title], (w) => {
+    H(k, () => l[h(m).title], (w) => {
       var I = /* @__PURE__ */ Ze(() => v(c(h(m).title + "_button")));
       ir(w, {
         get menuItems() {
@@ -2807,7 +2807,7 @@ function hn(t, e) {
   var i = Qa(), a = B(i), l = S(a), s = T(S(l), 2);
   st(s), s.__input = [Ka, e, n, r], s.__keyup = [Wa, n, e, r], x(l), x(a);
   var u = T(a, 2);
-  R(u, () => h(n).length > 0, (o) => {
+  H(u, () => h(n).length > 0, (o) => {
     var v = Xa(), c = S(v), d = S(c);
     X(d, 21, () => h(n), Z, (b, f) => {
       var y = Za(), m = S(y, !0);
@@ -2836,7 +2836,7 @@ function pn(t, e) {
   K(t, nl);
   let r = E(e, "height", 3, "80px"), n = E(e, "title", 3, ""), i = E(e, "titleImageUrl", 3, ""), a = E(e, "searchtext", 15);
   var l = rl(), s = S(l), u = S(s);
-  R(u, i, (b) => {
+  H(u, i, (b) => {
     var f = tl();
     $(() => {
       A(f, "height", `${r()}`), A(f, "src", i());
@@ -2901,7 +2901,7 @@ function gn(t, e) {
   var s = T(a, 2);
   X(s, 21, () => r().categories, Z, (k, w) => {
     var I = ie(), z = B(I);
-    R(
+    H(
       z,
       () => h(w).imageUrl,
       (O) => {
@@ -2912,14 +2912,14 @@ function gn(t, e) {
       },
       (O) => {
         var U = ie(), V = B(U);
-        R(
+        H(
           V,
           () => h(w).symbol,
           (N) => {
-            var H = al(), J = S(H, !0);
-            x(H), $(() => {
-              A(H, "title", h(w).name), M(J, h(w).symbol);
-            }), C(N, H);
+            var R = al(), J = S(R, !0);
+            x(R), $(() => {
+              A(R, "title", h(w).name), M(J, h(w).symbol);
+            }), C(N, R);
           },
           null,
           !0
@@ -2928,14 +2928,14 @@ function gn(t, e) {
     ), C(k, I);
   }), x(s), x(i);
   var u = T(i, 2);
-  R(u, () => r().imageUrl, (k) => {
+  H(u, () => r().imageUrl, (k) => {
     var w = ll();
     $(() => A(w, "src", r().imageUrl)), C(k, w);
   });
   var o = T(u, 2), v = S(o, !0);
   x(o);
   var c = T(o, 2), d = S(c);
-  R(d, () => r().authorImageUrl, (k) => {
+  H(d, () => r().authorImageUrl, (k) => {
     var w = sl();
     $(() => A(w, "src", r().authorImageUrl)), C(k, w);
   });
@@ -2946,7 +2946,7 @@ function gn(t, e) {
   var g = T(y, 2), _ = S(g), p = T(_, 2);
   X(p, 21, () => r().types, Z, (k, w) => {
     var I = ie(), z = B(I);
-    R(
+    H(
       z,
       () => h(w).imageUrl,
       (O) => {
@@ -2957,14 +2957,14 @@ function gn(t, e) {
       },
       (O) => {
         var U = ie(), V = B(U);
-        R(
+        H(
           V,
           () => h(w).symbol,
           (N) => {
-            var H = ul(), J = S(H, !0);
-            x(H), $(() => {
-              A(H, "title", h(w).name), M(J, h(w).symbol);
-            }), C(N, H);
+            var R = ul(), J = S(R, !0);
+            x(R), $(() => {
+              A(R, "title", h(w).name), M(J, h(w).symbol);
+            }), C(N, R);
           },
           null,
           !0
@@ -2989,7 +2989,7 @@ function _n(t, e) {
   var n = vl();
   X(n, 21, r, Z, (i, a) => {
     var l = ie(), s = B(l);
-    R(s, () => !h(a).hidden, (u) => {
+    H(s, () => !h(a).hidden, (u) => {
       gn(u, {
         get item() {
           return h(a);
@@ -3077,7 +3077,7 @@ function xn(t, e) {
     var g = Cl();
     g.__click = [kl, s, m];
     var _ = S(g);
-    R(
+    H(
       _,
       () => l[h(m).name] === !0,
       (w) => {
@@ -3097,7 +3097,7 @@ function xn(t, e) {
   var c = T(v, 2), d = S(c);
   d.__click = [wl, i, e];
   var b = S(d);
-  R(
+  H(
     b,
     () => i() === "CARD",
     (y) => {
@@ -3206,12 +3206,12 @@ function yn(t, e) {
       v(w);
     }, X(I, 21, r, Z, (z, O) => {
       var U = ie(), V = B(U);
-      R(
+      H(
         V,
         () => h(k)[h(O).name],
         (N) => {
-          var H = Rl(), J = S(H);
-          R(
+          var R = Rl(), J = S(R);
+          H(
             J,
             a,
             (G) => {
@@ -3224,11 +3224,11 @@ function yn(t, e) {
               var Q = zl(), he = S(Q, !0);
               x(Q), $(() => M(he, h(k)[h(O).name])), C(G, Q);
             }
-          ), x(H), $(() => Pe(H, "column_sm", h(O).hideNarrow)), C(N, H);
+          ), x(R), $(() => Pe(R, "column_sm", h(O).hideNarrow)), C(N, R);
         },
         (N) => {
-          var H = Hl();
-          C(N, H);
+          var R = Hl();
+          C(N, R);
         }
       ), C(z, U);
     }), x(I), $(() => Pe(I, "table_row_selected", w === h(o))), C(p, I);
@@ -3282,24 +3282,24 @@ function Fl(t, e) {
   }
   function k() {
     for (let N of c()) {
-      let H = !1;
-      if (f != "" && N.description && N.title && N.authorName && (!N.title.toLowerCase().includes(f.toLowerCase()) || !N.description.toLowerCase().includes(f.toLowerCase()) || !N.authorName.toLowerCase().includes(f.toLowerCase())) && (H = !0), !H && N.categories)
+      let R = !1;
+      if ((f != "" && N.description && N.title && N.authorName && !N.title.toLowerCase().includes(f.toLowerCase()) && !N.description.toLowerCase().includes(f.toLowerCase()) && !N.authorName.toLowerCase().includes(f.toLowerCase()) || f != "" && N.description == "") && (R = !0), !R && N.categories)
         for (let J of Object.keys(y)) {
           const G = N.categories.find((Q) => Q.name === J);
           if (y[J] && !G) {
-            H = !0;
+            R = !0;
             break;
           }
         }
-      if (!H && N.types)
+      if (!R && N.types)
         for (let J of Object.keys(m)) {
           const G = N.types.find((Q) => Q.name === J);
           if (m[J] && !G) {
-            H = !0;
+            R = !0;
             break;
           }
         }
-      N.hidden = H;
+      N.hidden = R;
     }
   }
   var w = jl(), I = B(w);
@@ -3366,7 +3366,7 @@ function Fl(t, e) {
     }
   });
   var V = T(U, 2);
-  R(
+  H(
     V,
     () => h(d) === "CARD",
     (N) => {
@@ -3374,8 +3374,8 @@ function Fl(t, e) {
         get items() {
           return c();
         },
-        set items(H) {
-          c(H);
+        set items(R) {
+          c(R);
         }
       });
     },
@@ -3387,8 +3387,8 @@ function Fl(t, e) {
         get tableRows() {
           return c();
         },
-        set tableRows(H) {
-          c(H);
+        set tableRows(R) {
+          c(R);
         },
         linkprefix: "",
         linkcolumnname: "link",
@@ -3516,12 +3516,12 @@ function wn(t, e) {
     }
   };
   var b = Wl(), f = S(b);
-  R(f, n, (_) => {
+  H(f, n, (_) => {
     var p = Jl(), k = S(p, !0);
     x(p), $(() => M(k, n())), C(_, p);
   });
   var y = T(f, 2), m = S(y);
-  R(m, i, (_) => {
+  H(m, i, (_) => {
     var p = Gl(), k = S(p);
     x(p), $(() => A(k, "src", i())), C(_, p);
   });
@@ -3594,7 +3594,7 @@ function rs(t, e) {
   var d = T(c, 2);
   X(d, 21, s, Z, (b, f) => {
     var y = ie(), m = B(y);
-    R(
+    H(
       m,
       () => h(f).type == "input" || h(f).type == "textarea",
       (g) => {
@@ -3616,7 +3616,7 @@ function rs(t, e) {
       },
       (g) => {
         var _ = ie(), p = B(_);
-        R(
+        H(
           p,
           () => h(f).type == "select",
           (k) => {
@@ -3638,7 +3638,7 @@ function rs(t, e) {
           },
           (k) => {
             var w = ie(), I = B(w);
-            R(
+            H(
               I,
               () => h(f).type == "multiselect",
               (z) => {
@@ -3660,13 +3660,13 @@ function rs(t, e) {
               },
               (z) => {
                 var O = ie(), U = B(O);
-                R(
+                H(
                   U,
                   () => h(f).type == "file",
                   (V) => {
-                    var N = Ql(), H = B(N), J = S(H), G = S(J, !0);
-                    x(J), x(H);
-                    var Q = T(H, 2);
+                    var N = Ql(), R = B(N), J = S(R), G = S(J, !0);
+                    x(J), x(R);
+                    var Q = T(R, 2);
                     Q.__change = [Xl, o];
                     var he = T(Q, 2), ye = S(he, !0);
                     x(he), $(() => {
