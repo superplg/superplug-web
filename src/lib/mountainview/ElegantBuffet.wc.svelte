@@ -23,7 +23,7 @@
     sortTypes="",
     onSortSelect,
     sortSelected = $bindable(""),
-    items
+    items = $bindable([])
   }:
   {
     title: string,
@@ -151,25 +151,41 @@
       }
       item.hidden = itemHidden;
     }
-
-    items = items;
   }
 </script>
 
 <ElegantHeader {title} {titleUrl} {titleImageUrl} {headerMenus}></ElegantHeader>
 
-<ElegantHeroSearch {title} {titleImageUrl} bind:searchtext {searchloadresults} searchsubmit={searchSubmit} />
+<ElegantHeroSearch
+  {title}
+  {titleImageUrl}
+  bind:searchtext
+  {searchloadresults}
+  searchsubmit={searchSubmit}
+/>
 
 <ElegantFilterCategories {categories} categoryselect={categorySelect} />
 
-<ElegantFilterTypes {types} {sortTypes} {sortSelected} onTypeSelect={typeSelect} {onSortSelect} bind:view />
+<ElegantFilterTypes
+  {types}
+  {sortTypes}
+  {sortSelected}
+  onTypeSelect={typeSelect}
+  {onSortSelect}
+  bind:view
+/>
 
 {#if view === "CARD"}
-  <ElegantPageCard bind:items={items}/>
+  <ElegantPageCard bind:items={items} />
 {:else}
-  <ElegantTable {tableHeaders} bind:tableRows={items} linkprefix="" linkcolumnname="link" tableRowClick={undefined} />
+  <ElegantTable
+    {tableHeaders}
+    bind:tableRows={items}
+    linkprefix=""
+    linkcolumnname="link"
+    tableRowClick={undefined}
+  />
 {/if}
 
 <style>
-
 </style>

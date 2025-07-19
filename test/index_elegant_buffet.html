@@ -57,7 +57,7 @@
         link: "https://google.com",
         types: [
           {
-            name: "Docs",
+            name: "Slides",
             url: "kubernetes.png"
           }
         ]
@@ -79,32 +79,37 @@
         link: "https://google.com",
         types: [
           {
-            name: "Slides",
+            name: "Docs",
             url: "kubernetes.png"
           }
         ]
       }
     ];
 
-    const categories = [
-      {name: "Apigee X", symbol: "X"}, 
-      {name: "OPDK", symbol: "O"},
-      {name: "Kubernetes", symbol: "K"},
-      {name: "Hybrid", symbol: "H"} 
+    let categories = [
+      {
+        name: "Kubernetes",
+        symbol: "K"
+      }
     ];
 
-    const types = [
-      {name: "Docs", symbol: "🕮"},
-      {name: "Tools", symbol: "🖰"},
-      {name: "Recordings", symbol: "🖭"}
-    ];
+    let types = [
+      {
+        name: "Docs",
+        symbol: "D"
+      },
+      {
+        name: "Slides",
+        symbol: "S"
+      }
+    ]
 
     customElements.whenDefined('mv-elegant-buffet').then(() => {
       let buffet = document.querySelector('mv-elegant-buffet');
       buffet.setAttribute("items", JSON.stringify(items));
       buffet.setAttribute("headerMenus", JSON.stringify(menus));
-      buffet.setAttribute("types", JSON.stringify(types));   
-      buffet.setAttribute("categories", JSON.stringify(categories));   
+      buffet.setAttribute("categories", JSON.stringify(categories));
+      buffet.setAttribute("types", JSON.stringify(types));
     });
   </script>
 
