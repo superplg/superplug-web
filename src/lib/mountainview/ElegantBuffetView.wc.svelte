@@ -67,6 +67,8 @@
         result += `<li>${link}</li>`;
       }
       result += "</ul>";
+    } else if (item.type == "img") {
+      result += `<${item.type} src="${item.value}"></${item.type}>`;
     } else {
       result += `<${item.type}>${item.value}</${item.type}>`;
     }

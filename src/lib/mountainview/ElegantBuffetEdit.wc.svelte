@@ -49,7 +49,8 @@
 
     const formData = new FormData(formElement);
     for (let item of items) {
-      formData.set(item.id, item.value);
+      if (item.type != "file")
+        formData.set(item.id, item.value);
     }
 
     document.dispatchEvent(
@@ -93,7 +94,7 @@
         class="file_button"
         type="file"
         id={item.id}
-        name={item.label}
+        name={item.id}
         accept="image/png, image/jpeg"
         onchange={onFileChange}
       />
