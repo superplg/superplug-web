@@ -12,14 +12,14 @@
 
   let {
     height = "80px",
-    title = "",
+    titleText = "",
     titleImageUrl = "",
     searchtext = $bindable(),
     searchloadresults,
     searchsubmit,
   }: {
     height?: string,
-    title: string,
+    titleText: string,
     titleImageUrl: string,
     searchtext: string,
     searchloadresults?: (text: string) => string[],
@@ -32,7 +32,7 @@
     {#if titleImageUrl}
       <img class="hero_image" height={`${height}`} alt="logo" src={titleImageUrl} />
     {/if}
-    <div class="hero_logo_text">{title}</div>
+    <div class="hero_logo_text">{titleText}</div>
   </div>
 
   <div class="hero_search">

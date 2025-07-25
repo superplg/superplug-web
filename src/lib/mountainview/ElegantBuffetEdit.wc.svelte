@@ -8,19 +8,20 @@
 
   let {
     formId = "",
-    title = "",
+    titleText = "",
     titleUrl = "/",
     titleImageUrl = "",
     headerMenus = [],
     items = [],
   }: {
     formId?: string;
-    title: string;
+    titleText: string;
     titleUrl: string;
     titleImageUrl: string;
     headerMenus: {
       title: string;
       titleUrl: string;
+      titleColor: string;
       imageUrl: string;
       imageShape: string;
       items: {
@@ -39,7 +40,7 @@
 
   let formElement: HTMLFormElement;
 
-  if (!formId) formId = title;
+  if (!formId) formId = titleText;
 
   if (typeof(items) == "string") {
     items = JSON.parse(items);
@@ -70,7 +71,7 @@
 
 </script>
 
-<ElegantHeader {title} {titleUrl} {titleImageUrl} {headerMenus}></ElegantHeader>
+<ElegantHeader {titleText} {titleUrl} {titleImageUrl} {headerMenus}></ElegantHeader>
 
 <form id={formId} bind:this={formElement} class="edit_frame">
   {#each items as item}
@@ -101,6 +102,10 @@
       <div class="file_name">
         {item.value}
       </div>
+      {#if item.value && (item.value.endsWith("png") || item.value.endsWith("jpg"))}
+        <!-- svelte-ignore a11y_missing_attribute -->
+        <img src={item.value} class="image_preview" />
+      {/if}
     {/if}
   {/each}
 </form>
@@ -121,6 +126,13 @@
   }
 
   .file_name {
+    margin-top: 10px;
     margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .image_preview {
+    width: 244px;
+    margin-bottom: 14px;
   }
 </style>

@@ -9,7 +9,7 @@
   import ElegantTable from "./ElegantTable.wc.svelte";
 
   let {
-    title="",
+    titleText="",
     titleUrl="/",
     titleImageUrl="",
     headerMenus=[],
@@ -26,12 +26,13 @@
     items = $bindable([])
   }:
   {
-    title: string,
+    titleText: string,
     titleUrl: string,
     titleImageUrl: string,
     headerMenus: {
       title: string,
-      titleUrl: string
+      titleUrl: string,
+      titleColor: string,
       imageUrl: string,
       imageShape: string,
       items: {
@@ -90,7 +91,9 @@
 
   let searchText = "";
   let categorySelections: {[key: string]: boolean} = {};
+  let anyCategoriesSelected: boolean = false;
   let typeSelections: {[key: string]: boolean} = {};
+  let anyTypesSelected: boolean = false;
 
   function searchSubmit(text: string) {
     searchText = text;
@@ -103,6 +106,13 @@
 
   function categorySelect(selected: {[key: string]: boolean}) {
     categorySelections = selected;
+    anyCategoriesSelected = false;
+    for (const [key, value] of Object.entries(categorySelections)) {
+      if (value) {
+        anyCategoriesSelected = true;
+        break;
+      }
+    }
     if (categoryselect) {
       categoryselect(selected);
     } else {
@@ -112,6 +122,13 @@
 
   function typeSelect(selected: {[key: string]: boolean}) {
     typeSelections = selected;
+    anyTypesSelected = false;
+    for (const [key, value] of Object.entries(typeSelections)) {
+      if (value) {
+        anyTypesSelected = true;
+        break;
+      }
+    }
     if (onTypeSelect) {
       onTypeSelect(selected)
     } else {
@@ -132,7 +149,9 @@
         itemHidden = true;
       
       // check categories if item still hidden
-      if (!itemHidden && item.categories) {
+      if (!itemHidden && ((!item.categories || item.categories.length === 0) && anyCategoriesSelected))
+        itemHidden = true;
+      else if (!itemHidden && item.categories) {
         for(let key of Object.keys(categorySelections)) {
           const cat = item.categories.find(category => category.name === key);
           if (categorySelections[key] && !cat) {
@@ -142,7 +161,9 @@
         }
       }
       // check types, if item is still hidden
-      if (!itemHidden && item.types) {
+      if (!itemHidden && ((!item.types || item.types.length === 0) && anyTypesSelected))
+        itemHidden = true;
+      else if (!itemHidden && item.types) {
         for(let key of Object.keys(typeSelections)) {
           const t = item.types.find(type => type.name === key);
           if (typeSelections[key] && !t) {
@@ -156,10 +177,10 @@
   }
 </script>
 
-<ElegantHeader {title} {titleUrl} {titleImageUrl} {headerMenus}></ElegantHeader>
+<ElegantHeader {titleText} {titleUrl} {titleImageUrl} {headerMenus}></ElegantHeader>
 
 <ElegantHeroSearch
-  {title}
+  {titleText}
   {titleImageUrl}
   bind:searchtext
   {searchloadresults}

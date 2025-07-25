@@ -5,7 +5,7 @@
 
   // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
-    title: 'Stories/MountainView/ElegantBuffet',
+    titleText: 'Stories/MountainView/ElegantBuffet',
     component: ElegantBuffet,
     tags: ['autodocs'],
     argTypes: {},
@@ -131,7 +131,7 @@
 </script>
 
 <!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
-<Story name="Primary" args={{ title: "CommonSky", titleImageUrl: '/favicon.png', menus: menus, search: search, items: items, categories: categories, types: types, sorts: sorts, onSortSelect: onSortSelect}}>
+<Story name="Primary" args={{ titleText: "CommonSky", titleImageUrl: '/favicon.png', menus: menus, search: search, items: items, categories: categories, types: types, sorts: sorts, onSortSelect: onSortSelect}}>
 </Story>
 
 <style>
