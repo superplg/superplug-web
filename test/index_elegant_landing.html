@@ -4,7 +4,7 @@
     <script type="module" src="../dist/lib/superplug-web.js"></script>
   </head>
   <body>
-    <mv-elegant-buffet titleText="Apigee Assets" titleImageUrl="favicon.png" />
+    <mv-elegant-landing titleText="Apigee Assets" titleImageUrl="favicon.png" />
   </body>
 
   <script>
@@ -104,12 +104,10 @@
       }
     ]
 
-    customElements.whenDefined('mv-elegant-buffet').then(() => {
-      let buffet = document.querySelector('mv-elegant-buffet');
+    customElements.whenDefined('mv-elegant-landing').then(() => {
+      let buffet = document.querySelector('mv-elegant-landing');
       buffet.setAttribute("items", JSON.stringify(items));
       buffet.setAttribute("headerMenus", JSON.stringify(menus));
-      buffet.setAttribute("categories", JSON.stringify(categories));
-      buffet.setAttribute("types", JSON.stringify(types));
     });
   </script>
 
