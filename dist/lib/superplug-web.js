@@ -3471,6 +3471,7 @@ function Vl(t, e) {
         }
       c && (v += `<div style="margin: 24px 0px;">
           <iframe
+            class="view_image"
             width="100%"
             height="374"
             src=${c}
