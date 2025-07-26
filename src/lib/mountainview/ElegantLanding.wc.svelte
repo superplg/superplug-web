@@ -66,7 +66,7 @@
     hero = JSON.parse(hero);
   }
   if (typeof sections == "string") {
-    hero = JSON.parse(sections);
+    sections = JSON.parse(sections);
   }
 </script>
 
