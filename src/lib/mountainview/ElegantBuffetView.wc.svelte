@@ -58,7 +58,7 @@
       let links = item.value.split(",");
       result += "<ul>";
       for (let link of links) {
-        result += `<li><a href="${link}" target="_blank">${link}</a></li>`;
+        result += `<li><a href="${link.startsWith("go/") ? "http://" + link : link}" target="_blank">${link}</a></li>`;
       }
       result += "</ul>";
     } else if (item.type == "ul") {

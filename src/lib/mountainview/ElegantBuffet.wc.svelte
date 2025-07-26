@@ -20,8 +20,7 @@
     categoryselect,
     types=[],
     onTypeSelect,
-    sortTypes="",
-    onSortSelect,
+    sortTypes="Date descending, Date ascending, Title ascending, Title descending",
     sortSelected = $bindable(""),
     items = $bindable([])
   }:
@@ -55,7 +54,6 @@
     onTypeSelect: (typeState: {[key: string]: boolean}) => void,
     sortTypes: string,
     sortSelected: string,
-    onSortSelect: (sort: string) => void,
     items: {
       title: string,
       dateTime: string,
@@ -87,7 +85,11 @@
   let tableHeaders:{name: string, displayName: string, searchable: boolean}[] = $state([
     { name: "dateTime", displayName: "Date", searchable: false},
     { name: "authorName", displayName: "Author", searchable: true},
-    { name: "title", displayName: "Title", searchable: true}]);
+    { name: "title", displayName: "Title", searchable: true},
+    { name: "categoriesText", displayName: "Categories", searchable: false},
+    { name: "typesText", displayName: "Tags", searchable: false}]);
+
+  let sortHeaders: {[key: string]: string} = $state({});
 
   let searchText = "";
   let categorySelections: {[key: string]: boolean} = {};
@@ -102,6 +104,36 @@
     } else {
       setVisibleItems();
     }
+  }
+
+  function onSortSelect(sortType: string) {
+    if (sortType == "Date descending") {
+      sortHeader("dateTime", "DESC");
+    } else if (sortType == "Date ascending") {
+      sortHeader("dateTime", "ASC");
+    } else if (sortType == "Title ascending") {
+      sortHeader("title", "ASC");
+    } else if (sortType == "Title descending") {
+      sortHeader("title", "DESC");
+    }
+  }
+
+  function sortHeader(headerName: string, direction: string = "") {
+    if (direction != "") sortHeaders[headerName] = direction;
+
+    if (sortHeaders[headerName] == "ASC") {
+      items.sort((a, b) => {
+        let aObj: any = a;
+        let bObj: any = b;
+        return aObj[headerName] < bObj[headerName] ? -1 : 1
+      });
+    } else {
+      items.sort((a, b) => {
+        let aObj: any = a;
+        let bObj: any = b;
+        return aObj[headerName] > bObj[headerName] ? -1 : 1
+      });
+    }   
   }
 
   function categorySelect(selected: {[key: string]: boolean}) {
@@ -184,7 +216,7 @@
   {titleImageUrl}
   bind:searchtext
   {searchloadresults}
-  searchsubmit={searchSubmit}
+  searchItems={searchSubmit}
 />
 
 <ElegantFilterCategories {categories} categoryselect={categorySelect} />
@@ -203,10 +235,11 @@
 {:else}
   <ElegantTable
     {tableHeaders}
-    bind:tableRows={items}
+    bind:items={items}
     linkprefix=""
     linkcolumnname="link"
     tableRowClick={undefined}
+    searchItems={searchSubmit}
   />
 {/if}
 

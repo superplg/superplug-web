@@ -4,11 +4,11 @@
   let {
     searchtext = $bindable(),
     searchloadresults,
-    searchsubmit,
+    searchItems,
   }: {
     searchtext: string;
     searchloadresults?: (text: string) => string[];
-    searchsubmit: (text: string) => void;
+    searchItems: (text: string) => void;
   } = $props();
 
   let results: string[] = $state([]);
@@ -27,12 +27,12 @@
     if (e.key === "Escape") {
       results = [];
     } else if (e.key === "Enter") {
-      if (searchsubmit) {
-        searchsubmit(searchtext);
+      if (searchItems) {
+        searchItems(searchtext);
       }
 
       document.dispatchEvent(
-        new CustomEvent("SearchSubmit", {
+        new CustomEvent("SearchItems", {
           detail: {
             text: searchtext,
           },
@@ -41,12 +41,12 @@
 
       searchtext = "";
     } else {
-      if (searchsubmit) {
-        searchsubmit(searchtext);
+      if (searchItems) {
+        searchItems(searchtext);
       }
 
       document.dispatchEvent(
-        new CustomEvent("SearchSubmit", {
+        new CustomEvent("SearchItems", {
           detail: {
             text: searchtext,
           },

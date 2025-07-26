@@ -3,7 +3,7 @@
 <script lang="ts">
   let {
     categories,
-    categoryselect,
+    categoryselect
   }: {
     categories: {
       name: string;

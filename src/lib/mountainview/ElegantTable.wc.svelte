@@ -7,29 +7,31 @@
 <script lang="ts">
   let {
     tableHeaders = [],
-    tableRows = $bindable([]),
+    items = $bindable([]),
     linkprefix = "",
     linkcolumnname = "",
     tableRowClick = undefined,
+    searchItems = undefined
   }: {
     tableHeaders: { name: string; displayName: string; searchable?: boolean, hideNarrow?: boolean }[];
-    tableRows?: any[];
+    items: any[];
     linkprefix?: string;
     linkcolumnname?: string;
     tableRowClick?: undefined | ((e: { detail: { rowIndex: number } }) => void);
+    searchItems?: (text: string) => void;
   } = $props();
 
   if (typeof tableHeaders == "string") {
     tableHeaders = JSON.parse(tableHeaders);
   }
 
-  if (typeof tableRows == "string") {
-    tableRows = JSON.parse(tableRows);
+  if (typeof items == "string") {
+    items = JSON.parse(items);
   }
 
-  if ((!tableHeaders || tableHeaders.length === 0) && tableRows && tableRows.length > 0) {
+  if ((!tableHeaders || tableHeaders.length === 0) && items && items.length > 0) {
     tableHeaders = [];
-    for (let key of Object.keys(tableRows[0])) {
+    for (let key of Object.keys(items[0])) {
       tableHeaders.push({
         name: key,
         displayName: key,
@@ -39,38 +41,11 @@
     }
   }
 
-  let rowsDisplay: any[] = $state(tableRows);
   let filterInput: string = $state("");
   let rowSelectedIndex: number = $state(-1);
 
   function search() {
-    if (filterInput) {
-      let tempData: any[] = [];
-
-      for (let row of tableRows) {
-        let addRow: boolean = false;
-
-        for (let header of tableHeaders) {
-          if (header.searchable && row[header.name]) {
-            if (
-              row[header.name]
-                .toString()
-                .toLowerCase()
-                .includes(filterInput.toLowerCase())
-            ) {
-              addRow = true;
-              break;
-            }
-          }
-        }
-
-        if (addRow) tempData.push(row);
-      }
-
-      rowsDisplay = tempData;
-    } else {
-      rowsDisplay = tableRows;
-    }
+    if (searchItems) searchItems(filterInput);
   }
 
   const rowClick = (index: number) => {
@@ -128,27 +103,29 @@
       </tr>
     </thead>
     <tbody>
-      {#each rowsDisplay as row, i}
-        <tr class:table_row_selected={i === rowSelectedIndex} onclick={() => {
-            rowClick(i);
-          }}
-        >
-          {#each tableHeaders as colName}
-            {#if row[colName.name]}
-              <td class:column_sm={colName.hideNarrow}
-                >
-                {#if linkcolumnname}
-                  <a class="table_row" href={linkprefix + row[linkcolumnname]}
-                  >{row[colName.name]}</a>
-                {:else}
-                  <span class="table_row">{row[colName.name]}</span>
-                {/if}
-              </td>
-            {:else}
-              <td></td>
-            {/if}
-          {/each}
-        </tr>
+      {#each items as row, i}
+        {#if !row["hidden"]}
+          <tr class:table_row_selected={i === rowSelectedIndex} onclick={() => {
+              rowClick(i);
+            }}
+          >
+            {#each tableHeaders as colName}
+              {#if row[colName.name]}
+                <td class:column_sm={colName.hideNarrow}
+                  >
+                  {#if linkcolumnname}
+                    <a class="table_row" href={linkprefix + row[linkcolumnname]}
+                    >{row[colName.name]}</a>
+                  {:else}
+                    <span class="table_row">{row[colName.name]}</span>
+                  {/if}
+                </td>
+              {:else}
+                <td></td>
+              {/if}
+            {/each}
+          </tr>
+        {/if}
       {/each}
     </tbody>
   </table>

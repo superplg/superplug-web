@@ -16,14 +16,14 @@
     titleImageUrl = "",
     searchtext = $bindable(),
     searchloadresults,
-    searchsubmit,
+    searchItems,
   }: {
     height?: string,
     titleText: string,
     titleImageUrl: string,
     searchtext: string,
     searchloadresults?: (text: string) => string[],
-    searchsubmit: (text: string) => void
+    searchItems: (text: string) => void
   } = $props();
 </script>
 
@@ -36,7 +36,7 @@
   </div>
 
   <div class="hero_search">
-    <ElegantSearch bind:searchtext {searchloadresults} {searchsubmit} />
+    <ElegantSearch bind:searchtext {searchloadresults} {searchItems} />
   </div>
 </div>
 
