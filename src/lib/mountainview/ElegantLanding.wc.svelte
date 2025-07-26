@@ -2,13 +2,38 @@
 
 <script lang="ts">
   import ElegantHeader from "./ElegantHeader.wc.svelte";
+  import IngButton from "../ingolstadt/IngButton.wc.svelte";
 
   let {
     titleText = "",
     titleUrl = "/",
     titleImageUrl = "",
     headerMenus = [],
-    items = [],
+    hero = {
+      heroTitle: "Let's achieve more with our data & AI assets",
+      heroDescription: "Apigee Marketplace is a specialized online hub designed to connect data providers and consumers within various industrial sectors. Its focus is on facilitating the exchange of highly valuable industrial datasets, empowering businesses to optimize operations, accelerate innovation, and gain a competitive edge.",
+      heroButton1: "Sign in",
+      heroButton2: "Register"
+    },
+    sections = [
+      {
+        sectionTitle: "Our mission is data & AI collaboration at scale",
+        sectionDescription: "Apigee Marketplace is a specialized online hub designed to connect data providers and consumers within and across industries. Its focus is on facilitating the exchange of highly valuable industrial datasets, empowering businesses to optimize operations, accelerate innovation, and gain a competitive edge.",
+        sectionImageUrl: "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }, {
+        sectionTitle: "Transparent & simple pricing for first, second and third-party data",
+        sectionDescription: "Our data marketplace puts simplicity at the forefront. Pricing structures are clear and concise, with no hidden fees or complicated calculations. You'll find tiered subscription options based on your needs, or the ability to pay-as-you-go for individual datasets.",
+        sectionImageUrl: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }, {
+        sectionTitle: "Verified & curated data from a network of high-quality partners",
+        sectionDescription: "Data Marketplace is a specialized online hub designed to connect data providers and consumers within various industrial sectors. Its focus is on facilitating the exchange of highly valuable industrial datasets, empowering businesses to optimize operations, accelerate innovation, and gain a competitive edge.",
+        sectionImageUrl: "https://images.unsplash.com/photo-1540646794357-6cbbd6f3501e?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }, {
+        sectionTitle: "Security & privacy built-in",
+        sectionDescription: "Apigee Marketplace prioritizes security by providing a multi-layered approach to protect customer data and infrastructure. Built-in safeguards, like encryption and access control, are foundational to the platform. The global network, equipped with custom-designed hardware and a hardened operating system, ensures high availability and resilience against attacks.",
+        sectionImageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      }
+    ],
   }: {
     titleText: string;
     titleUrl: string;
@@ -24,18 +49,24 @@
         url: string;
       }[];
     }[];
-    items: {
-      id: string;
-      label: string;
-      labelType: string;
-      value: string;
-      link: string;
-      type: string;
+    hero: {
+      heroTitle: string;
+      heroDescription: string;
+      heroButton1: string;
+      heroButton2: string
+    }
+    sections: {
+      sectionTitle: string;
+      sectionImageUrl: string;
+      sectionDescription: string
     }[];
   } = $props();
 
-  if (typeof items == "string") {
-    items = JSON.parse(items);
+  if (typeof hero == "string") {
+    hero = JSON.parse(hero);
+  }
+  if (typeof sections == "string") {
+    hero = JSON.parse(sections);
   }
 </script>
 
@@ -81,106 +112,50 @@
 
 <div class="landing_main_panel">
   <div id="overview" class="landing_heading">
-    Let's achieve more with our data & AI assets
+    {hero.heroTitle}
   </div>
   <div class="landing_content">
-    <div>
-      Apigee Marketplace is a specialized online hub designed to connect data
-      providers and consumers within various industrial sectors. Its focus is on
-      facilitating the exchange of highly valuable industrial datasets,
-      empowering businesses to optimize operations, accelerate innovation, and
-      gain a competitive edge.
-    </div>
+    <div>{hero.heroDescription}</div>
   </div>
   <div class="landing_heading_small">
     <span>
-      <a href="/sign-in" class="rounded_button_filled">Sign In</a>
-      <a href="/register" class="rounded_button_outlined">Register</a>
+      {#if hero.heroButton1}
+        <IngButton buttonTitle={hero.heroButton1} type="primary"></IngButton>
+      {/if}
+      {#if hero.heroButton2}
+        <IngButton buttonTitle={hero.heroButton2} type="secondary"></IngButton>
+      {/if}
     </span>
   </div>
-  <div class="landing_content_gray">
-    <div class="landing_sub_heading">
-      Our mission is data & AI collaboration at scale
-    </div>
-    <div class="landing_content_divided">
-      <div class="landing_content_half">
-        <img
-          class="landing_content_half_image"
-          alt="frankfurt"
-          src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
-      </div>
-      <div id="mission" class="landing_content_half_text">
-        Apigee Marketplace is a specialized online hub designed to connect data
-        providers and consumers within and across industries. Its focus is on
-        facilitating the exchange of highly valuable industrial datasets,
-        empowering businesses to optimize operations, accelerate innovation, and
-        gain a competitive edge.
-      </div>
-    </div>
-  </div>
-  <div class="landing_content_white">
-    <div class="landing_sub_heading">
-      Transparent & simple pricing for first, second and third-party data
-    </div>
-    <div class="landing_content_divided">
-      <div id="pricing" class="landing_content_half_text">
-        Our data marketplace puts simplicity at the forefront. Pricing
-        structures are clear and concise, with no hidden fees or complicated
-        calculations. You'll find tiered subscription options based on your
-        needs, or the ability to pay-as-you-go for individual datasets.
-      </div>
-      <div class="landing_content_half">
-        <img
-          class="landing_content_half_image"
-          alt="frankfurt"
-          src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
-      </div>
-    </div>
-  </div>
-  <div class="landing_content_gray">
-    <div class="landing_sub_heading">
-      Verified & curated data from a network of high-quality partners
-    </div>
-    <div class="landing_content_divided">
-      <div class="landing_content_half">
-        <img
-          class="landing_content_half_image"
-          alt="frankfurt"
-          src="https://images.unsplash.com/photo-1540646794357-6cbbd6f3501e?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
-      </div>
-      <div id="partners" class="landing_content_half_text">
-        Data Marketplace is a specialized online hub designed to connect data
-        providers and consumers within various industrial sectors. Its focus is
-        on facilitating the exchange of highly valuable industrial datasets,
-        empowering businesses to optimize operations, accelerate innovation, and
-        gain a competitive edge.
-      </div>
-    </div>
-  </div>
 
-  <div class="landing_content_white">
-    <div class="landing_sub_heading">Security & privacy built-in</div>
-    <div class="landing_content_divided">
-      <div id="privacy" class="landing_content_half_text">
-        Apigee Marketplace prioritizes security by providing a multi-layered
-        approach to protect customer data and infrastructure. Built-in
-        safeguards, like encryption and access control, are foundational to the
-        platform. The global network, equipped with custom-designed hardware and
-        a hardened operating system, ensures high availability and resilience
-        against attacks.
+  {#each sections as section, i}
+    <div class={(i & 1) ? "landing_content_gray" : "landing_content_white"}>
+      <div class="landing_sub_heading">
+        {section.sectionTitle}
       </div>
-      <div class="landing_content_half">
-        <img
-          class="landing_content_half_image"
-          alt="frankfurt"
-          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
+      <div class="landing_content_divided">
+        {#if !(i & 1)}
+          <div class="landing_content_half">
+            <img
+              class="landing_content_half_image"
+              alt={"image for section " + i}
+              src={section.sectionImageUrl}
+            />
+          </div>
+          <div id="mission" class="landing_content_half_text">{section.sectionDescription}</div>
+        {:else}
+          <div id="mission" class="landing_content_half_text">{section.sectionDescription}</div>
+          <div class="landing_content_half">
+            <img
+              class="landing_content_half_image"
+              alt={"image for section " + i}
+              src={section.sectionImageUrl}
+            />
+          </div>
+        {/if}
       </div>
     </div>
-  </div>
+  {/each}
 
   <div class="footer"></div>
 </div>
@@ -188,12 +163,12 @@
 <style>
   .background_left {
     position: absolute;
-    top: 72px;
+    /* top: 72px; */
   }
 
   .background_right {
     position: absolute;
-    top: 72px;
+    /* top: 72px; */
     right: 0px;
   }
 

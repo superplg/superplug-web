@@ -148,7 +148,9 @@
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: flex-start;
-    background-color: rgba(255, 255, 255, 1);
+    /* background-color: rgba(255, 255, 255, 1); */
+    background-color: rgba(255, 255, 255, .6);
+    backdrop-filter: blur(10px);
     height: 57px;
     font-weight: 560;
     color: #333;

@@ -1,12 +1,38 @@
-
 <svelte:options customElement="ing-button" />
 
 <script>
-  const { type = "primary", size = 'medium', label = 'Button', onClick = undefined } = $props();
+  const {
+    buttonTitle = "",
+    type = "primary",
+    size = "medium",
+    onClick = undefined,
+  } = $props();
+
+  function onButtonClick(e) {
+    if (onClick) {
+      onClick(e);
+    }
+    
+    if (buttonTitle) {
+      document.dispatchEvent(
+        new CustomEvent(buttonTitle, {
+          detail: {},
+        }),
+      );
+    }
+  }
 </script>
 
-<button type="button" class={"button button--" + size + " button--" + type} onclick={onClick}>
-  <slot />
+<button
+  type="button"
+  class={"button button--" + size + " button--" + type}
+  onclick={onButtonClick}
+>
+  {#if buttonTitle}
+    {buttonTitle}
+  {:else}
+    <slot />
+  {/if}
 </button>
 
 <style>
@@ -18,7 +44,7 @@
     border-radius: 3em;
     font-weight: 700;
     line-height: 1;
-    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   .button--primary {
     background-color: #1ea7fd;

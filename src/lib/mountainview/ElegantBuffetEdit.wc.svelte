@@ -12,7 +12,7 @@
     titleUrl = "/",
     titleImageUrl = "",
     headerMenus = [],
-    items = [],
+    items = $bindable([]),
   }: {
     formId?: string;
     titleText: string;
@@ -34,6 +34,7 @@
       label: string;
       value: string;
       type: string;
+      focus: boolean;
       options: string;
     }[];
   } = $props();
@@ -46,11 +47,23 @@
     items = JSON.parse(items);
   }
   
+  let imagePreviews: { [key: string]: string} = $state({});
+
   function onChange(id: string, value: string) {
 
     const formData = new FormData(formElement);
     for (let item of items) {
-      if (item.type != "file")
+      let setDataBoundResult = true;
+      // don't set for files, since they are submitted as files directly in the form.
+      let entry = formData.get(item.id) as File;
+      if (entry && entry.name) {
+        setDataBoundResult = false;
+        // set img preview
+        imagePreviews[item.id] = URL.createObjectURL(entry);
+      }
+
+      //if (item.type != "file")
+      if (setDataBoundResult)
         formData.set(item.id, item.value);
     }
 
@@ -76,7 +89,7 @@
 <form id={formId} bind:this={formElement} class="edit_frame">
   {#each items as item}
     {#if item.type == "input" || item.type == "textarea"}
-      <IngInput label={item.label} bind:input={item.value} type={item.type} inputChanged={onChange}/>
+      <IngInput label={item.label} bind:input={item.value} type={item.type} focus={item.focus} inputChanged={onChange}/>
     {:else if item.type == "select"}
       <IngSelect
         label={item.label}
@@ -87,25 +100,30 @@
     {:else if item.type == "multiselect"}
       <IngMultiSelect label={item.label} items={item.options} bind:value={item.value} inputChanged={onChange}/>
     {:else if item.type == "file"}
-      <div style="margin-bottom: 6px;">
-        <label for={item.id}>{item.label}</label>
-      </div>
+      <div id={item.id + "_container"}>
+        <div style="margin-bottom: 6px;">
+          <label for={item.id}>{item.label}</label>
+        </div>
 
-      <input
-        class="file_button"
-        type="file"
-        id={item.id}
-        name={item.id}
-        accept="image/png, image/jpeg"
-        onchange={onFileChange}
-      />
-      <div class="file_name">
-        {item.value}
+        <input
+          class="file_button"
+          type="file"
+          id={item.id}
+          name={item.id}
+          accept="image/png, image/jpeg"
+          onchange={onFileChange}
+        />
+        <div class="file_name">
+          {item.value}
+        </div>
+        {#if imagePreviews[item.id]}
+          <!-- svelte-ignore a11y_missing_attribute -->
+          <img src={imagePreviews[item.id]} class="image_preview" />
+        {:else if item.value && (item.value.endsWith("png") || item.value.endsWith("jpg"))}
+          <!-- svelte-ignore a11y_missing_attribute -->
+          <img src={item.value} class="image_preview" />
+        {/if}
       </div>
-      {#if item.value && (item.value.endsWith("png") || item.value.endsWith("jpg"))}
-        <!-- svelte-ignore a11y_missing_attribute -->
-        <img src={item.value} class="image_preview" />
-      {/if}
     {/if}
   {/each}
 </form>
@@ -134,5 +152,6 @@
   .image_preview {
     width: 244px;
     margin-bottom: 14px;
+    border-radius: 7px;
   }
 </style>

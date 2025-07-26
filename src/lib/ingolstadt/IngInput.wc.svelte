@@ -1,31 +1,34 @@
-<svelte:options customElement={{
-  tag: "ing-input",
-  props: {
-    input: {
-      reflect: true
-    }
-  }
-}} />
+<svelte:options
+  customElement={{
+    tag: "ing-input",
+    props: {
+      input: {
+        reflect: true,
+      },
+    },
+  }}
+/>
 
 <script lang="ts">
-
   let {
     inputId = "",
-    label = "", 
-    icon = "", 
-    type="text", 
-    placeholder = "", 
-    input =  $bindable(""),
+    label = "",
+    icon = "",
+    type = "text",
+    placeholder = "",
+    input = $bindable(""),
     inputStyle = "",
-    inputChanged = undefined
+    focus = false,
+    inputChanged = undefined,
   }: {
-    inputId?: string,
-    label: string,
-    icon?: string,
-    type?: string,
-    placeholder?: string,
-    input?: string,
-    inputStyle?: string,
+    inputId?: string;
+    label: string;
+    icon?: string;
+    type?: string;
+    placeholder?: string;
+    input?: string;
+    inputStyle?: string;
+    focus?: boolean;
     inputChanged?: (id: string, value: string) => void;
   } = $props();
 
@@ -49,7 +52,6 @@
       );
     }
   };
-
 </script>
 
 <div style={inputStyle} class="input_frame">
@@ -66,9 +68,34 @@
     {/if}
 
     {#if type == "textarea"}
-    <textarea id={inputId} name={inputId} class="input_field" rows="10" {placeholder} style="height: auto;" bind:value={input} oninput={(e) => {localInputChanged(e)}} form=""></textarea>
+      <textarea
+        id={inputId}
+        name={inputId}
+        class="input_field"
+        rows="10"
+        {placeholder}
+        style="height: auto;"
+        bind:value={input}
+        autofocus={focus}
+        oninput={(e) => {
+          localInputChanged(e);
+        }}
+        form=""
+      ></textarea>
     {:else}
-    <input id={inputId} name={inputId} class="input_field" {type} {placeholder} bind:value={input} oninput={(e) => {localInputChanged(e)}} form="" />
+      <input
+        id={inputId}
+        name={inputId}
+        class="input_field"
+        {type}
+        {placeholder}
+        bind:value={input}
+        autofocus={focus}
+        oninput={(e) => {
+          localInputChanged(e);
+        }}
+        form=""
+      />
     {/if}
   </div>
 </div>

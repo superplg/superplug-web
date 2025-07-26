@@ -101,6 +101,7 @@
 
   .header_image {
     width: calc(100% - 18px);
+    max-width: 88%;
     margin: 0px 18px;
     object-fit: cover;
     height: 144px;
@@ -120,6 +121,8 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+
+    width: 100%;
   }
 
   .title:hover {
