@@ -108,9 +108,9 @@
 
   function onSortSelect(sortType: string) {
     if (sortType == "Date descending") {
-      sortHeader("dateTime", "DESC");
+      sortHeader("dateTimeIso", "DESC");
     } else if (sortType == "Date ascending") {
-      sortHeader("dateTime", "ASC");
+      sortHeader("dateTimeIso", "ASC");
     } else if (sortType == "Title ascending") {
       sortHeader("title", "ASC");
     } else if (sortType == "Title descending") {

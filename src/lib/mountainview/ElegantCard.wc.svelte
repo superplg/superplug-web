@@ -15,12 +15,13 @@
       types: []
     }
   } = $props();
+
 </script>
 
 <div class="card_frame">
 
   <div class="top_left_label">
-    <span>{(new Date(item.dateTime)).toString()}</span>
+    <span>{item.dateTime}</span>
     <div class="top_right_icons">
       {#each item.categories as cat}
         {#if cat.imageUrl}

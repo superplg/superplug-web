@@ -145,7 +145,7 @@
 <style>
   .header {
     display: flex;
-    flex-flow: row wrap;
+    /* flex-flow: row wrap; */
     justify-content: space-between;
     align-items: flex-start;
     /* background-color: rgba(255, 255, 255, 1); */
@@ -169,6 +169,13 @@
     margin-left: 12px;
     color: #111;
     font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  @media (width <= 666px) {
+    .title_text {
+      display: none;
+      opacity: 0;
+    }
   }
 
   .title:link {

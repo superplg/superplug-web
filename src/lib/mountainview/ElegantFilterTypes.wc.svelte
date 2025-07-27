@@ -180,6 +180,7 @@
   .options {
     display: flex;
     justify-content: left;
+    flex-wrap: wrap;
     width: 100%;
     margin-left: 16px;
   }
@@ -187,6 +188,7 @@
   .filter {
     display: flex;
     margin-right: 16px;
+    align-self: self-start;
   }
 
   .filterbar_option {

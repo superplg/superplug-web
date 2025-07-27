@@ -50,6 +50,7 @@
 <style>
   .filterbar_frame {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
   }
 
