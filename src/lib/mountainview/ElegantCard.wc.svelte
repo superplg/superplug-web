@@ -48,7 +48,7 @@
   <div class="footer">
     <div class="description">{item.description}</div>
     <div class="link">
-      <a href={item.link} target="_blank">Open asset ↗</a>
+      <a href={item.link}>Open ↗</a>
       <div class="type_box">
         {#each item.types as type}
           {#if type.imageUrl}
